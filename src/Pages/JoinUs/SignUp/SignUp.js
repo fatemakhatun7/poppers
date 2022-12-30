@@ -25,18 +25,17 @@ const SignUp = () => {
                 console.log(user);
                 
 
-                const sareeUser = {
+                const poppersUser = {
                     userEmail : user.email,
-                    role : data.role,
                     displayName: data.name
                 }
 
-                fetch('https://b-sarees-server.vercel.app/users', {
+                fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify(sareeUser)
+                    body: JSON.stringify(poppersUser)
                 })
                 
                 toast('You have joined us Successfully.')
@@ -61,7 +60,7 @@ const SignUp = () => {
           toast.success('You have successfully created your account.');
         })
       }
-console.log(user);
+
     return (
         <div className='h-[800px] flex justify-center items-center my-5'>
             <div className='w-96 p-7 bg-lime-200 rounded-lg'>

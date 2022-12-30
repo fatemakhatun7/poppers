@@ -4,6 +4,7 @@ import Error from "../../Error/Error";
 import Home from "../../Home/Home";
 import SignIn from "../../JoinUs/SignIn/SignIn";
 import SignUp from "../../JoinUs/SignUp/SignUp";
+import Media from "../../Media/Media";
 import AddPost from "../../Post/AddPost";
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         {
           path: '/addPost',
           element: <AddPost></AddPost>
+        },
+        {
+          path: '/media',
+          element: <Media></Media>
         }
         ]
     }

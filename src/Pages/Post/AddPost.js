@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Form, Link, useNavigate } from 'react-router-dom';
@@ -14,15 +13,6 @@ const AddPost = () => {
 
     const imageHostKey = process.env.REACT_APP_imgbb_key;
 
-    const { data: media = [], isLoading } = useQuery({
-        queryKey: ['media'],
-        queryFn: async () => {
-            const res = await fetch('');
-            const data = await res.json();
-            return data    
-        }
-    });
-
     const postTime = new Date().toLocaleTimeString()
     const postDay = new Date().toDateString()
     const date = new Date()
@@ -34,9 +24,9 @@ const AddPost = () => {
 
     const handleSubmit = e =>{
         e.preventDefault();
-        // console.log(addProduct);
+        // console.log(addPost);
 
-        const image = addPost.product_image[0];
+        const image = addPost.post_image[0];
         // console.log(image)
         const formData = new FormData();
         formData.append('image',image);
@@ -56,7 +46,7 @@ const AddPost = () => {
                 postDateInfo: postDateInfo
             }
             
-            fetch('', {
+            fetch('https://poppers-server.vercel.app/media', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -66,7 +56,7 @@ const AddPost = () => {
         .then(res => res.json())
         .then(data => {
             if(data.acknowledged){
-                toast.success('Successfully added your product.');
+                toast.success('Successfully added your post.');
                 e.target.reset();
                 navigate('/media')
             }
@@ -77,47 +67,45 @@ const AddPost = () => {
 
     return (
         <div>
-            <div className='bg-rose-100 py-4 mx-6 border rounded-lg'>
-            <div>
-                <p className='text-center text-2xl font-semibold my-5'>Add a Post</p>
-            </div>
-            <div className='hero my-10 bg-rose-100 py-4 mx-6 border rounded-lg'>
-            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                <Form onSubmit={handleSubmit} className='card-body'>
-                    <div className='form-control'>
-                        <label className="label">
-                            <span className="label-text">Your name</span>
-                        </label>
-                        <input type="text" name="user_name" onBlur={(e)=>setAddPost({...addPost,user_name : e.target.value})} value={user.displayName} placeholder="Your name" className="input input-bordered input-info max-w-xs mb-2" readOnly/>
-                    </div>
-                    <div className='form-control'>
-                        <label className="label">
-                            <span className="label-text">Email</span>
-                        </label>
-                        <input type="email" name="email" onBlur={(e)=>setAddPost({...addPost,email : e.target.value})} placeholder="Your email" value={user.email} className="input input-bordered input-info max-w-xs mb-2" readOnly/>
-                    </div>
-                    <div className='form-control'>
-                        <label className="label">
-                            <span className="label-text">Picture</span>
-                        </label>
-                        <input type="file" name="product_image" onBlur={(e)=>setAddPost({...addPost,product_image : e.target.files})} placeholder="product image"  className="input input-bordered input-info max-w-xs mb-2" required/>
-                    </div>
-                    <div className='form-control'>
-                        <label className="label">
-                            <span className="label-text">
-                                Description
-                            </span>
-                        </label>
-                        <input type="text" name="details" onBlur={(e)=>setAddPost({...addPost,details : e.target.value})} placeholder="details" className="input input-bordered input-info max-w-xs mb-2" required/>
-                    </div>
-                <div className='form-control'>
-                    <Link className="btn btn-active btn-secondary">
-                        Submit
-                    </Link>
+            <div className='bg-rose-100 py-4 mx-1 sm:mx-6 border rounded-lg'>
+                <div>
+                    <p className='text-center text-2xl font-semibold my-5'>Add a Post</p>
                 </div>
-                </Form>
-            </div>
-            </div>
+                <div className='hero my-5 bg-rose-100 py-4 border rounded-lg'>
+                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <Form onSubmit={handleSubmit} className='card-body'>
+                        <div className='form-control'>
+                            <label className="label">
+                                <span className="label-text">Your name</span>
+                            </label>
+                            <input type="text" name="user_name" onBlur={(e)=>setAddPost({...addPost,user_name : e.target.value})} placeholder="Your name" className="input input-bordered input-info max-w-xs mb-2"/>
+                        </div>
+                        <div className='form-control'>
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="email" name="email" onBlur={(e)=>setAddPost({...addPost,email : e.target.value})} placeholder="Your email" className="input input-bordered input-info max-w-xs mb-2"/>
+                        </div>
+                        <div className='form-control'>
+                            <label className="label">
+                                <span className="label-text">Picture</span>
+                            </label>
+                            <input type="file" name="post_image" onBlur={(e)=>setAddPost({...addPost,post_image : e.target.files})} placeholder="post image"  className="input input-bordered input-info max-w-xs mb-2" required/>
+                        </div>
+                        <div className='form-control'>
+                            <label className="label">
+                                <span className="label-text">
+                                    Description
+                                </span>
+                            </label>
+                            <input type="text" name="details" onBlur={(e)=>setAddPost({...addPost,details : e.target.value})} placeholder="details" className="input input-bordered input-info max-w-xs mb-2" required/>
+                        </div>
+                    <div className='form-control'>
+                    <input className='btn btn-accent w-full mt-4' value="Submit" type="submit" />
+                    </div>
+                    </Form>
+                </div>
+                </div>
             </div>
         </div>
     );

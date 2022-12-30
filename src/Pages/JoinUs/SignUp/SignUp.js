@@ -30,7 +30,7 @@ const SignUp = () => {
                     displayName: data.name
                 }
 
-                fetch('http://localhost:5000/users', {
+                fetch('https://poppers-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

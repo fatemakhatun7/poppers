@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import MessageCard from './MessageCard';
+import MediaDetailsCard from './MediaDetailsCard';
 
-const Message = () => {
+const MediaDetails = () => {
     const [data, setData] = useState([]);
     const [isError, setIsError] = useState("");
 
     useEffect(() => {
         axios
-        .get("https://poppers-server.vercel.app/profile")
+        .get("https://poppers-server.vercel.app/media")
         .then((response) => setData(response.data))
         .catch((error) => setIsError(error.message));
     }, []);
@@ -16,18 +16,15 @@ const Message = () => {
     return (
         <div>
             <div className='my-10'>
-                <p className='text-center text-3xl font-semibold my-5'>Chat Box</p>
-            </div>
-            <div className='my-10'>
                 {
-                    data.map(profile=><MessageCard 
-                        key={profile._id} 
-                        profile={profile}
-                    ></MessageCard>)
+                    data.map(media=><MediaDetailsCard 
+                        key={media._id} 
+                        media={media}
+                    ></MediaDetailsCard>)
                 }
             </div>
         </div>
     );
 };
 
-export default Message;
+export default MediaDetails;

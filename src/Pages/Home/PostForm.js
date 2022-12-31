@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const PostForm = () => {
 
     return (
-        <div className='mx-5 mb-10'>
+        <div className='mx-5 mb-20'>
             <div className="flex my-4">
                 <div className="avatar">
                     <div className="w-10 sm:w-16 rounded-full mr-1">

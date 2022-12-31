@@ -7,6 +7,7 @@ import Home from "../../Home/Home";
 import SignIn from "../../JoinUs/SignIn/SignIn";
 import SignUp from "../../JoinUs/SignUp/SignUp";
 import Media from "../../Media/Media";
+import MediaDetails from "../../Media/MediaDetails/MediaDetails";
 import Message from "../../Message/Message";
 import AddPost from "../../Post/AddPost";
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         {
           path: '/media',
           element: <Media></Media>
+        },
+        {
+          path: '/details',
+          element: <MediaDetails></MediaDetails>
         },
         {
           path: '/message',

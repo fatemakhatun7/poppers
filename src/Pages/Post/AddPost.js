@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { Form, Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Contexts/AuthProvider';
+import { Form, useNavigate } from 'react-router-dom';
 import useTitle from '../../Hooks/useTitle';
 
 const AddPost = () => {
     useTitle('add post')
-    const {user} = useContext(AuthContext);
     const [addPost, setAddPost] = useState({});
 
     const navigate = useNavigate();

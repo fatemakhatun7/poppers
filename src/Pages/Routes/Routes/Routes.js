@@ -1,10 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../../Layout/Main";
+import About from "../../About/About";
+import Profile from "../../About/Profile";
 import Error from "../../Error/Error";
 import Home from "../../Home/Home";
 import SignIn from "../../JoinUs/SignIn/SignIn";
 import SignUp from "../../JoinUs/SignUp/SignUp";
 import Media from "../../Media/Media";
+import Message from "../../Message/Message";
 import AddPost from "../../Post/AddPost";
 
 const router = createBrowserRouter([
@@ -32,6 +35,18 @@ const router = createBrowserRouter([
         {
           path: '/media',
           element: <Media></Media>
+        },
+        {
+          path: '/message',
+          element: <Message></Message>
+        },
+        {
+          path: '/about',
+          element: <About></About>
+        },
+        {
+          path: '/profile',
+          element: <Profile></Profile>
         }
         ]
     }

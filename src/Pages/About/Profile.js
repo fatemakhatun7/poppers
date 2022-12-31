@@ -37,7 +37,7 @@ const Profile = () => {
                 address: editProfile.address
             }
             
-            fetch('http://localhost:5000/profile', {
+            fetch('https://poppers-server.vercel.app/profile', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
